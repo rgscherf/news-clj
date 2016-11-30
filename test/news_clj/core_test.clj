@@ -1,6 +1,6 @@
-(ns news.core-test
+(ns news-clj.core-test
   (:require [clojure.test :refer :all]
-            [news.core :refer :all]))
+            [news-clj.core :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."
