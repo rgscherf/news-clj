@@ -1,7 +1,9 @@
 (ns news-clj.core
-  (:require [news-clj.retrieve :as retrieve])
+  (:require [news-clj.cli :as cli])
   (:gen-class))
 
 (defn -main
   []
-  (println retrieve/formatted-feeds))
+  (do
+    cli/process-input
+    (System/exit 0)))

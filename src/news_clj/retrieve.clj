@@ -38,8 +38,6 @@
   [raw-date]
   (->>
     raw-date
-    chop-date
-    (f/parse (f/formatters :date-hour-minute-second))
     coerce/to-long))
 
 
@@ -58,7 +56,10 @@
     (map format-entry feed-entries)))
 
 (def formatted-feeds
-  (pmap formatted-feed-entries feeds))
-
-(prn (formatted-feed-entries (feeds 2)))
-(type (parse-rss-date "2016-11-30T10:00:00.000-00:00"))
+  (->>
+    feeds
+    (pmap formatted-feed-entries)
+    flatten
+    (sort-by :published)
+    reverse
+    (take 20)))
