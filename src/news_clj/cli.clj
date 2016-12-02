@@ -10,15 +10,10 @@
 
 (defn print-entry
   [entry]
-  (let [{:keys [ id title publication ]} entry
-        entry-str (str
-                    id
-                    " "
-                    title
-                    " ("
-                    publication
-                    ")")]
-    (println entry-str)))
+  (let [{:keys [ id title publication link]} entry
+        upper-title (.toUpperCase title)]
+    (println (str upper-title " " publication))
+    (println (str link "\n"))))
 
 (defn print-entries
   [entries]
@@ -30,9 +25,4 @@
 
 (def process-input
   (do
-    (print-entries keyed-entries)
-    (flush)
-    (let [user-entry (read-string (read-line))
-          entry-key (int user-entry)]
-      (b/browse-url (:link
-                      (entry-by-id entry-key))))))
+    (print-entries keyed-entries)))
